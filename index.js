@@ -1,16 +1,24 @@
 const express = require('express');
 const cors = require('cors');
-// const axios = require('axios');
+const path = require('path');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
 
 const app = express();
+app.set('views', path.join(__dirname, 'room'));
+app.set('view engine', 'ejs');
 
 app.use(cors(), express.json());
 
+const date = new Date();
+let day = date.toLocaleDateString('en-IN', { day: '2-digit' }).toString();
+let month = date.toLocaleDateString('en-IN', { month: '2-digit' }).toString();
+let year = date.toLocaleDateString('en-IN', { year: 'numeric' }).toString();
+
+const todaysDate = day + month + year;
+
 app.get('/:from/:to/:date', (req, res) => {
   const { from, to, date } = req.params;
-  console.log(from, to, date);
   const url = `https://www.ixigo.com/search/result/flight?from=${from.toUpperCase()}&to=${to.toUpperCase()}&date=${date}&returnDate=&adults=1&children=0&infants=0&class=e&source=Search%20Form`;
   (async function main() {
     try {
@@ -159,6 +167,10 @@ app.get('/:from/:to/:date', (req, res) => {
       console.error(err);
     }
   })();
+});
+
+app.get('*', (req, res) => {
+  res.render('index.ejs', { todaysDate: todaysDate });
 });
 
 app.listen(80);
