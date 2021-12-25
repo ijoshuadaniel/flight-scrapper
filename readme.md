@@ -1,25 +1,17 @@
 # FLIGHTS API SCRAPPED
 
-## This is a api scrapped from web sources from different web flights provider.
+This is a api scrapped from web sources from different web flights provider.
+currently this api supports only one way.Clone the repo and install all the dependency
 
-## currently this api supports only one way.
+npm i / yarn
+run the server by runing scripts
+npm start / yarn start
+after running the server will be hoisted on port 80
 
-## clone the repo and install all the dependency
+endpoint : localhost/:from/:to/:date
 
-### npm i / yarn
+:from = Airport IATA, example : (DEL,BLR)
+:to = Airport IATA, example : (DEL,BLR)
+:date = Date in the format (datemonthyear = 01012022)
 
-## run the server by runing scripts
-
-### npm start / yarn start
-
-## after running the server will be hoisted on port 80
-
-# endpoint : localhost/:from/:to/:date
-
-### :from = Airport IATA, example : (DEL,BLR)
-
-### :to = Airport IATA, example : (DEL,BLR)
-
-### :date = Date in the format (datemonthyear = 01012022)
-
-# Hosted at https://flights.joshuadaniel.me
+Hosted at https://flights.joshuadaniel.me
